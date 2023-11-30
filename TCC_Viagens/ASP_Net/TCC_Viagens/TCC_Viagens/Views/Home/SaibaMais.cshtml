@@ -1,0 +1,97 @@
+﻿@model IEnumerable<TCC_Viagens.Models.Banco.Pacote>
+<link href="~/Models/Style/Cadastrar/style.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "SaibaMais";
+}
+
+@if (ViewBag.nnPacote != null)
+{
+    <h2>@ViewBag.nnPacote</h2>
+}
+else
+{
+    <h2>Todos os Pacote</h2>
+}
+@if (TempData["Mensagem Erro ADM"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["Mensagem Erro ADM"]
+    </div>
+}
+@if (TempData["Delete Erro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["Delete Erro"]
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nmPacote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsPreco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsPacote)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nmPacote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dsPreco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dsPacote)
+            </td>
+            <div class="col-lg-3 col-md-6 mb-4" style="margin:2% 4%">
+                <div class="card h-100">
+                    @if (item.Imagem != null)
+                    {
+                        <img class="card-img-right flex-auto d-none d-md-block" data-src=" " alt="Thumbnail [300x300]"
+                             style="width: 300px; height:300px;" src="@item.Imagem"
+                             data-holder-rendered="true" />
+                    }
+                    else
+                    {
+                        <img class="card-img-right flex-auto d-none d-md-block" data-src=" " alt="Thumbnail [300x300]"
+                             style="width: 300px; height:300px;" src="@item.Imagem"
+                             data-holder-rendered="true" />
+                    }
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a>@item.nmPacote</a>
+                        </h4>
+                    </div>
+                    <div class="card-footer space-between-flex" style="width:90%">
+                        <div>
+                            @using (Html.BeginForm("AdicionarCarrinho", "Home", FormMethod.Post))
+                            {
+                                <input type="hidden" name="id" value="@item.IdPacote" />
+                                <button type="submit" class="color btn btn-default azul">Adicionar ao carrinho</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (Session["tipoLogado2"] != null)
+            {
+                <td>
+                    @Html.ActionLink("Editar", "EditarPacoteId", "Pacote", new { id = item.IdPacote }, new { onclick = "return confim('Deseja realmente editar?');" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdPacote }) |
+                    @Html.ActionLink("Deletar Plano", "DeletarPacote", "Pacote", new { id = item.IdPacote }, new { onclick = "return confim('Deseja realmente excluir?');" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>

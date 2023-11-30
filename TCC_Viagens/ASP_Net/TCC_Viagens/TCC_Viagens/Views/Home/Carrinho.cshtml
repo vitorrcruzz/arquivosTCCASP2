@@ -1,0 +1,45 @@
+﻿@model TCC_Viagens.Models.Banco.modelCompra
+
+@{
+    ViewBag.Title = "Carrinho";
+}
+<h2>Carrinho</h2>
+@if (TempData["Mensagem Erro Carrinho"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["Mensagem Erro Carrinho"] @Html.ActionLink("Login", "Login", "Login")
+    </div>
+}
+<table>
+    @if (Session["Carrinho"] == null)
+    {
+        <h2>Voçe não possui itens no carrinho</h2>
+    }
+    else
+    {
+        foreach (var item in Model.PlanosPedidos)
+        {
+            if (item.idPacote == null)
+            {
+                <h2>Voçe não possui itens no carrinho</h2>
+            }
+            else
+            {
+                <tr>
+                    <td>Plano</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@item.nomePacote</td>
+                    <td><img alt="Thumbnail [300x300]" style="width: 30px; height: 30px;" src="@item.imagem" /></td>
+                    <td>@Html.ActionLink("Remover", "ExcluirPacote", new { id = item.PlanoPedidoID }, null)</td>
+                </tr>
+            }
+            @Html.ActionLink("Comprar", "Pagamento", "Home")
+        }
+
+    }
+</table>
+<br />

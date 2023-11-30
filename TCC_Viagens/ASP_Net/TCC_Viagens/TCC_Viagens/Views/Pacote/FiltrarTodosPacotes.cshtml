@@ -1,0 +1,95 @@
+﻿@model IEnumerable<TCC_Viagens.Models.Banco.Produtos.FiltrarPlanoPacote>
+
+@{
+    ViewBag.Title = "FiltrarTodosPacotes";
+}
+
+<h2>FiltrarTodosPacotes</h2>
+
+@using (Html.BeginForm("FiltrarTodosPacotes", "Pacote", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="text" name="nmPacote" placeholder="Digite o interresse">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="text" name="nmPais" placeholder="Digite o nome do Pais">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="text" name="valor" placeholder="Digite um valor minimo e maximo, Exp:0/2000">
+        </div>
+    </div>
+
+    <input type="submit" name="Filtrar">
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPacote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nmPacote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsPreco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsPacote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nmPais)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPacote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nmPacote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valor1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valor2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dsPreco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dsPacote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nmPais)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+
+</table>

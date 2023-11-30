@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TCC_Viagens.Models.Banco.Plano>
+
+@{
+    ViewBag.Title = "SaibaMaisPlanos";
+}
+
+<h2>@ViewBag.nnPlano</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nmPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nmCidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsCidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsClima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsEstadiaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsEstadiaTermino)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsEstadiaTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsMoeda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsIdiomaP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dsIdiomaS)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nmPais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nmCidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsCidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsClima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsEstadiaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsEstadiaTermino)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsEstadiaTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsMoeda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsIdiomaP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dsIdiomaS)
+        </td>
+    </tr>
+}
+
+</table>
